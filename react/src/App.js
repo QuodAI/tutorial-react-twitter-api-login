@@ -10,6 +10,9 @@ function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [name, setName] = useState();
+  const [imageUrl, setImageUrl] = useState();
+  const [status, setStatus] = useState();
+  const [url, setUrl] = useState();
   
   const login = () => {
     (async () => {
@@ -53,7 +56,7 @@ function App() {
         
         try {
           //Authenticated Resource Access
-          const {data: {name}} = await axios({
+          const {data: {name, profile_image_url_https, status, entities}} = await axios({
             url: `${backendUrl}/twitter/users/profile_banner`,
             method: 'GET',
             withCredentials: true
@@ -61,6 +64,9 @@ function App() {
           
           setIsLoggedIn(true);
           setName(name);
+          setImageUrl(profile_image_url_https);
+          setStatus(status.text);
+          setUrl(entities.url.urls[0].expanded_url);
          } catch (error) {
           console.error(error); 
          }
@@ -81,7 +87,10 @@ function App() {
         
         { isLoggedIn &&
           <div>
+            <div><img src={imageUrl}/></div> 
             <div>Name: {name}</div>
+            <div>URL: {url}</div>
+            <div>Status: {status}</div>
           </div>
         }
       </header>
