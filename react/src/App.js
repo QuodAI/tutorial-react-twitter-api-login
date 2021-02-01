@@ -69,17 +69,6 @@ function App() {
     })();
   }, []);
   
-  const test = () => {
-    (async () => {
-      
-      const response = await axios.get(`${backendUrl}/`, {withCredentials: true});
-      console.error(response);
-      const {count} = response.data;
-      alert(count);
-      
-    })();
-  }
-  
   return (
     <div className="App">
       <header className="App-header">
