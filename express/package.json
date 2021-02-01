@@ -1,0 +1,23 @@
+{
+  "name": "tutorial-react-twitter-api-login-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "author": "Ardee Aram",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "es6-promisify": "^6.1.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "oauth": "^0.9.15",
+    "querystring": "^0.2.0",
+    "util": "^0.12.3"
+  }
+}
