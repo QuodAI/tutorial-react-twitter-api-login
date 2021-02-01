@@ -35,6 +35,21 @@ function App() {
     })();
   }
   
+  const logout = () => {
+    (async () => {
+      try {
+        await axios({
+          url: `${backendUrl}/twitter/logout`, 
+          method: 'POST',
+          withCredentials: true
+        });
+        setIsLoggedIn(false);
+      } catch (error) {
+        console.error(error); 
+      }
+    })();
+  }
+  
   useEffect(() => {
     (async() => {
       
@@ -80,7 +95,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {!isLoggedIn &&
-          <a className='btn-primary' onClick={login}>
+          <a className='signin-btn' onClick={login}>
             <img src='https://assets.klaudsol.com/twitter.png' />
           </a>
         }
@@ -91,6 +106,7 @@ function App() {
             <div>Name: {name}</div>
             <div>URL: {url}</div>
             <div>Status: {status}</div>
+            <button className='signout-btn' onClick={logout}>Sign Out</button>
           </div>
         }
       </header>
