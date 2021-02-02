@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const serverless = require('serverless-http');
+const router = express.Router();
 
 const app = express();
 const port = 3000;
@@ -22,12 +23,12 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
+router.get('/', (req, res) => {
   res.json({message: "Hello, world"});  
 });
 
 //OAuth Step 1
-app.post('/twitter/oauth/request_token', async (req, res) => {
+router.post('/twitter/oauth/request_token', async (req, res) => {
   
   const {oauth_token, oauth_token_secret} = await oauth.getOAuthRequestToken();
   res.cookie(COOKIE_NAME, oauth_token , {
@@ -42,7 +43,7 @@ app.post('/twitter/oauth/request_token', async (req, res) => {
   
 
 //OAuth Step 3
-app.post('/twitter/oauth/access_token', async (req, res) => {
+router.post('/twitter/oauth/access_token', async (req, res) => {
   
   
   try {
@@ -66,7 +67,7 @@ app.post('/twitter/oauth/access_token', async (req, res) => {
 });
 
 //Authenticated resource access
-app.get("/twitter/users/profile_banner", async (req, res) => {
+router.get("/twitter/users/profile_banner", async (req, res) => {
   
   try {
     const oauth_token = req.cookies[COOKIE_NAME];
@@ -79,7 +80,7 @@ app.get("/twitter/users/profile_banner", async (req, res) => {
   
 });
 
-app.post("/twitter/logout", async (req, res) => {
+router.post("/twitter/logout", async (req, res) => {
   
   try {
     const oauth_token = req.cookies[COOKIE_NAME];
@@ -94,8 +95,11 @@ app.post("/twitter/logout", async (req, res) => {
 
 
 if (process.env.SERVERLESS) {
+  app.use('/.netlify/functions/server', router);
+  module.exports = app;
   module.exports.handler = serverless(app);
 } else {
+  app.use(router);
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
