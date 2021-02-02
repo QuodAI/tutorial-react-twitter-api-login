@@ -95,14 +95,14 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {!isLoggedIn &&
-          <a className='signin-btn' onClick={login}>
-            <img src='https://assets.klaudsol.com/twitter.png' />
+          <a href="#" className='signin-btn' onClick={login}>
+            <img alt='Twitter login button' src='https://assets.klaudsol.com/twitter.png' />
           </a>
         }
         
         { isLoggedIn &&
           <div>
-            <div><img src={imageUrl}/></div> 
+            <div><img alt='User profile image' src={imageUrl}/></div> 
             <div>Name: {name}</div>
             <div>URL: {url}</div>
             <div>Status: {status}</div>
