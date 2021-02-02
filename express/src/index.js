@@ -95,7 +95,7 @@ router.post("/twitter/logout", async (req, res) => {
 
 
 if (process.env.SERVERLESS) {
-  app.use(router);
+  app.use('/.netlify/functions/server', router);
   module.exports = app;
   module.exports.handler = serverless(app);
 } else {
