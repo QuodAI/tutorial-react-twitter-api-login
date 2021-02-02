@@ -22,6 +22,10 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+app.get('/', (req, res) => {
+  res.json({message: "Hello, world"});  
+});
+
 //OAuth Step 1
 app.post('/twitter/oauth/request_token', async (req, res) => {
   
