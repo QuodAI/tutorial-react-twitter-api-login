@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 router.get('/', (req, res) => {
-  res.json({message: "Hello, world"});  
+  res.json({message: "Hello, world", serverless: process.env.SERVERLESS});  
 });
 
 //OAuth Step 1
