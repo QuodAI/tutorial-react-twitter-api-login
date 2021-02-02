@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const serverless = require('serverless-http');
-const router = express.Router();
 
 const app = express();
 const port = 3000;
@@ -22,6 +21,8 @@ app.use(cors({
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+const router = express.Router();
 
 router.get('/', (req, res) => {
   res.json({message: "Hello, world"});  
