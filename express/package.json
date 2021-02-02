@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js",
-    "build": "netlify-lambda build express"
+    "build": "netlify-lambda build ."
   },
   "author": "Ardee Aram",
   "license": "ISC",
