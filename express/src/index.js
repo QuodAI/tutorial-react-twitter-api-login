@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 router.get('/', (req, res) => {
-  res.json({message: "Hello, world", serverless: process.env.SERVERLESS});  
+  res.json({message: "Hello, world"});  
 });
 
 //OAuth Step 1
@@ -94,12 +94,13 @@ router.post("/twitter/logout", async (req, res) => {
 });
 
 
-//if (process.env.SERVERLESS) {
+if (process.env.SERVERLESS) {
+  //as per Netlify lambda conventions
   app.use('/.netlify/functions/index', router);
   module.exports = app;
   module.exports.handler = serverless(app);
-//} else {
-//  app.listen(port, () => {
-//    console.log(`Example app listening at http://localhost:${port}`)
-//  })
-//}
+} else {
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
+}
