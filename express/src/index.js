@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const serverless = require('serverless-http');
 
 const app = express();
 const port = 3000;
@@ -88,6 +89,10 @@ app.post("/twitter/logout", async (req, res) => {
 });
 
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+if (process.env.SERVERLESS) {
+  module.exports.handler = serverless(app);
+} else {
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })
+}
