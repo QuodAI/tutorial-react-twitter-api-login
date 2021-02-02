@@ -1,3 +1,8 @@
+This is the codebase for the tutorial entitled "How to integrate Twitter Login into your React app". 
+
+Note that because of the requirements of the OAuth 1.0a protocol that the Twitter authentication is designed to follow, we cannot implement a pure React solution 
+(two reasons: React's inability to securely hide a secret, and due to the Same Origin policy). You will see an Express component in this codebase.    
+
 ## Quick Start
 
 ```
