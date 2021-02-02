@@ -17,7 +17,8 @@ let tokens = {};
 
 app.use(cors({
   origin: oauthCallback,
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'PUT', 'POST']
 }));
 app.use(bodyParser.json());
 app.use(cookieParser());
