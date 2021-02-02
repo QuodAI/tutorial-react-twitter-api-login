@@ -95,11 +95,10 @@ router.post("/twitter/logout", async (req, res) => {
 
 
 if (process.env.SERVERLESS) {
-  app.use('/.netlify/functions/server', router);
+  app.use(router);
   module.exports = app;
   module.exports.handler = serverless(app);
 } else {
-  app.use(router);
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
