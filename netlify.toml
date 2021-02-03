@@ -4,4 +4,4 @@
   functions = "express/functions"
   
 [context.production]
-  environment = { SERVERLESS = 1 }
+  environment = { SERVERLESS = "1" }
