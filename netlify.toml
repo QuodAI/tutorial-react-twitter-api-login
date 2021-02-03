@@ -2,4 +2,5 @@
   publish = "react/build"
   command = "cd react && npm install && npm run build && cd ../express && npm install && npm run build"
   functions = "express/functions"
-  environment = { SERVERLESS = "1" }
+[build.environment]
+  SERVERLESS = "1"
