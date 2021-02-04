@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const serverless = require('serverless-http');
 
@@ -15,11 +14,6 @@ const COOKIE_NAME = 'oauth_token';
 let tokens = {};
 
 
-app.use(cors({
-  origin: oauthCallback,
-  credentials: true,
-  methods: 'GET,POST'
-}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
@@ -33,11 +27,14 @@ router.get('/', (req, res) => {
 router.post('/twitter/oauth/request_token', async (req, res) => {
   
   const {oauth_token, oauth_token_secret} = await oauth.getOAuthRequestToken();
+  
   res.cookie(COOKIE_NAME, oauth_token , {
     maxAge: 15 * 60 * 1000, // 15 minutes
     secure: true,
-    sameSite: 'none',
+    httpOnly: true,
+    sameSite: true,
   });
+  
   tokens[oauth_token] = { oauth_token_secret };
   res.json({ oauth_token });
   
@@ -96,12 +93,13 @@ router.post("/twitter/logout", async (req, res) => {
 });
 
 
-if (process.env.SERVERLESS) {
+if (process.env.REACT_APP_SERVERLESS) {
   //as per Netlify lambda conventions
   app.use('/.netlify/functions/index', router);
   module.exports = app;
   module.exports.handler = serverless(app);
 } else {
+  app.use('/api', router);
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
