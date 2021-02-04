@@ -10,11 +10,13 @@ You can follow the link to view the [Live Demo](https://pensive-snyder-a1edac.ne
 ## Quick Start
 
 ```
-export FRONTEND_URL=https://xxxxxxx.com
-export HOST=localhost
-export DANGEROUSLY_DISABLE_HOST_CHECK=true              #See https://github.com/facebook/create-react-app/issues/2271
-export CONSUMER_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-export CONSUMER_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ngrok http 8080                                         # 8080 - default port of create-react-app
+
+export FRONTEND_URL=https://xxxxxxx.ngrok.io            # ngrok URL for callback
+export HOST=localhost                                   # as per create-react-app proxy requirements
+export DANGEROUSLY_DISABLE_HOST_CHECK=true              # See https://github.com/facebook/create-react-app/issues/2271
+export CONSUMER_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX        # aka API KEY, Get from Twitter Development Portal  
+export CONSUMER_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXX     # aka API SECRET, Get from Twitter Development Portal 
 
 cd react && npm start
 cd express && npm start
