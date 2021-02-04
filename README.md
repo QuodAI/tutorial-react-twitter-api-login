@@ -5,7 +5,7 @@ Note that because of the requirements of the OAuth 1.0a protocol that the Twitte
 
 ## Live Demo
 
-You can follow the link to view the [Live Demo](https://zen-volhard-180487.netlify.app/)
+You can follow the link to view the [Live Demo](https://pensive-snyder-a1edac.netlify.app/)
 
 ## Quick Start
 
