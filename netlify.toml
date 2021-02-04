@@ -1,4 +1,3 @@
 [build]
   publish = "react/build"
   command = "cd react && npm install && npm run build && cd ../express && npm install && npm run build"
-  functions = "functions"
