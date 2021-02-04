@@ -11,9 +11,10 @@ You can follow the link to view the [Live Demo](https://pensive-snyder-a1edac.ne
 
 ```
 export FRONTEND_URL=https://xxxxxxx.com
+export HOST=localhost
+export DANGEROUSLY_DISABLE_HOST_CHECK=true              #See https://github.com/facebook/create-react-app/issues/2271
 export CONSUMER_KEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 export CONSUMER_SECRET=XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-export REACT_APP_BACKEND_URL=https://xxxxxxx.com
 
 cd react && npm start
 cd express && npm start
