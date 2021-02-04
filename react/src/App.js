@@ -21,8 +21,7 @@ function App() {
         //OAuth Step 1
         const response = await axios({
           url: `${apiPath}/twitter/oauth/request_token`, 
-          method: 'POST',
-          withCredentials: true
+          method: 'POST'
         });
         
         const { oauth_token } = response.data;
@@ -40,8 +39,7 @@ function App() {
       try {
         await axios({
           url: `${apiPath}/twitter/logout`, 
-          method: 'POST',
-          withCredentials: true
+          method: 'POST'
         });
         setIsLoggedIn(false);
       } catch (error) {
@@ -61,8 +59,7 @@ function App() {
             await axios({
               url: `${apiPath}/twitter/oauth/access_token`,  
               method: 'POST',
-              data: {oauth_token, oauth_verifier}, 
-              withCredentials: true
+              data: {oauth_token, oauth_verifier}
             });
          } catch (error) {
           console.error(error); 
@@ -73,8 +70,7 @@ function App() {
           //Authenticated Resource Access
           const {data: {name, profile_image_url_https, status, entities}} = await axios({
             url: `${apiPath}/twitter/users/profile_banner`,
-            method: 'GET',
-            withCredentials: true
+            method: 'GET'
           });
           
           setIsLoggedIn(true);
