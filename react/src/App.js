@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import queryString from 'query-string';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+const apiPath = process.env.REACT_APP_SERVERLESS ? '/.netlify/functions/index' : '/api';
 
 function App() {
   
@@ -20,7 +20,7 @@ function App() {
       try {
         //OAuth Step 1
         const response = await axios({
-          url: `${backendUrl}/twitter/oauth/request_token`, 
+          url: `${apiPath}/twitter/oauth/request_token`, 
           method: 'POST',
           withCredentials: true
         });
@@ -39,7 +39,7 @@ function App() {
     (async () => {
       try {
         await axios({
-          url: `${backendUrl}/twitter/logout`, 
+          url: `${apiPath}/twitter/logout`, 
           method: 'POST',
           withCredentials: true
         });
@@ -59,7 +59,7 @@ function App() {
          try {
             //Oauth Step 3
             await axios({
-              url: `${backendUrl}/twitter/oauth/access_token`,  
+              url: `${apiPath}/twitter/oauth/access_token`,  
               method: 'POST',
               data: {oauth_token, oauth_verifier}, 
               withCredentials: true
@@ -72,7 +72,7 @@ function App() {
         try {
           //Authenticated Resource Access
           const {data: {name, profile_image_url_https, status, entities}} = await axios({
-            url: `${backendUrl}/twitter/users/profile_banner`,
+            url: `${apiPath}/twitter/users/profile_banner`,
             method: 'GET',
             withCredentials: true
           });
