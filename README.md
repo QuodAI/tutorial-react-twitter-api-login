@@ -10,6 +10,8 @@ You can follow the link to view the [Live Demo](https://pensive-snyder-a1edac.ne
 ## Quick Start
 
 ```
+ngrok http 8080                                         # 8080 - default port of create-react-app
+
 export FRONTEND_URL=https://xxxxxxx.ngrok.io            # ngrok URL for callback
 export HOST=localhost                                   # as per create-react-app proxy requirements
 export DANGEROUSLY_DISABLE_HOST_CHECK=true              # See https://github.com/facebook/create-react-app/issues/2271
